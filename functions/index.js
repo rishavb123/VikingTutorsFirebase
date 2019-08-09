@@ -8,7 +8,6 @@ exports.createdUser = functions.auth.user().onCreate((user) => {
     if(domain !== "sbstudents.org" && domain !== "sbschools.org" && domain !== "bhagat.io")
         return admin.auth().deleteUser(user.uid).then(() => console.log("Deleted Invalid User")).catch(e => console.log("Error:" + e));
     else {
-        user.sendEmailVerification()
         return admin.firestore().collection(domain === "sbstudents.org"? "students" : "teachers").doc().set({
             email: user.email,
             uid: user.uid

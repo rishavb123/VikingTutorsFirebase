@@ -1,6 +1,8 @@
 const functions = require('firebase-functions');
 const admin = require("firebase-admin");
 
+admin.initializeApp();
+
 exports.createdUser = functions.auth.user().onCreate((user) => {
     const domain = user.email.split("@")[1];
     if(domain !== "sbstudents.org" || domain !== "sbschools.org" || domain !== "bhagat.io")

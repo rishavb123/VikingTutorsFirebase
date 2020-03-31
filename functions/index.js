@@ -9,7 +9,7 @@ admin.initializeApp();
 
 exports.createdUser = functions.auth.user().onCreate((user) => {
     const domain = user.email.split("@")[1];
-    if(domain !== "sbstudents.org" && domain !== "sbschools.org" && domain !== "bhagat.io")
+    if(domain !== "sbstudents.org" && domain !== "sbschools.org" && domain !== "bhagat.io" && domain !== "vikingtutors.com")
         return admin.auth().deleteUser(user.uid).then(() => console.log("Deleted Invalid User")).catch(e => console.log("Error:" + e));
     else {
         const c = domain === "sbstudents.org"? "students" : "teachers"
